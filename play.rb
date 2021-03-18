@@ -17,11 +17,21 @@ class Hangman
     ]
   end
   
-  def begin
+  def start
+    puts "Welcome to Hangman! Your word is #{@word[0].length} characters long"
     puts "Your clue is: #{ @word[1] } "
+    
+    word_teaser = ""
+    @word[0].size.times do
+      word_teaser += "_ "
+    end
+    
+    puts word_teaser
+    puts "Make a guess"
+    guess = gets.chomp
   end
   
 end
 
 game = Hangman.new
-game.begin
+game.start
