@@ -17,6 +17,11 @@ class Hangman
     ]
   end
   
+  def make_guess
+    puts "Guess a letter"
+    guess = gets.chomp
+  end
+  
   def start
     puts "Welcome to Hangman! Your word is #{@word[0].length} characters long"
     puts "Your clue is: #{ @word[1] } "
@@ -25,10 +30,12 @@ class Hangman
     @word[0].size.times do
       word_teaser += "_ "
     end
-    
     puts word_teaser
-    puts "Make a guess"
-    guess = gets.chomp
+    
+    make_guess
+    
+    
+    
   end
   
 end
