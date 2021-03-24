@@ -50,6 +50,11 @@ class Hangman
       elsif @word.include?(guess)
         puts "Nice guess!"
         print_teaser(guess)
+
+        if @word == @word_teaser.split.join
+          puts "You've won!"
+          exit
+        end
       else
         puts "Incorrect guess!"
         @lives -= 1
