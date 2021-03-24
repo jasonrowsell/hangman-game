@@ -2,15 +2,20 @@ class Hangman
   
   def initialize
     @letters = ('a'..'z').to_a
-    @word = words.sample
+    word_clue = words.sample
+    @word =  word_clue[:word]
+    @clue = word_clue[:clue]
     @lives = 7
     @correct_guesses = []
-        
+    @word_teaser = ""
+    @word.size.times do
+      @word_teaser += "_ " 
+    end 
   end
     
   def words
     [
-      {word: "thursay", clue: "A day of the week"},
+      {word: "thursday", clue: "A day of the week"},
       {word: "arena", clue: "A venue for sports"},
       {word: "jazz", clue: "A genre of music, with its roots in blues"},
       {word: "brake", clue: "Verb to slow down"},
@@ -20,12 +25,20 @@ class Hangman
     ]
   end
 
-  def print_teaser
-    word_teaser = ""
-    @word[:word].size.times do
-      word_teaser += "_ "
+  def print_teaser(last_guess = nil)
+    update_teaser(last_guess) unless last_guess.nil?
+    puts @word_teaser
+  end
+
+  def update_teaser(last_guess)
+    new_teaser = @word_teaser.split
+    new_teaser.each_with_index do |letter, index|
+      if @word[index] == last_guess
+        new_teaser[index] = last_guess
+      end
     end
-    puts word_teaser
+
+    @word_teaser = new_teaser.join(' ')
   end
 
   def make_guess
@@ -33,11 +46,11 @@ class Hangman
       puts "Guess a letter"
       guess = gets.chomp.downcase.strip
       
-      if @word[:word].include?(guess)
+      if @word.include?(guess)
         puts "Nice guess!"
         @correct_guesses << guess
         @letters.delete(guess)
-        print_teaser
+        print_teaser(guess)
       else
         puts "Incorrect guess!"
         @lives -= 1
@@ -51,8 +64,8 @@ class Hangman
   end
 
   def start
-    puts "Welcome to Hangman! Your word is #{@word[:word].length} characters long"
-    puts "Your clue is: #{@word[:clue]} "
+    puts "Welcome to Hangman! Your word is #{@word.length} characters long"
+    puts "Your clue is: #{@clue} "
     
     print_teaser
   
