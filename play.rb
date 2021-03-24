@@ -45,8 +45,11 @@ class Hangman
     if @lives > 0
       puts "Guess a letter"
       guess = gets.chomp.downcase.strip
-      
-      if @word.include?(guess)
+
+      if guess == 'exit'
+        puts "Thanks for playing!"
+        exit
+      elsif @word.include?(guess)
         puts "Nice guess!"
         @correct_guesses << guess
         @letters.delete(guess)
@@ -65,10 +68,10 @@ class Hangman
 
   def start
     puts "Welcome to Hangman! Your word is #{@word.length} characters long"
-    puts "Your clue is: #{@clue} "
+    puts "To exit the game, type 'exit'"
     
     print_teaser
-  
+    puts "Your clue is: #{@clue} "
     make_guess
   
   end
