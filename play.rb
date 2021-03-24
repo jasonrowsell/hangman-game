@@ -1,6 +1,7 @@
 class Hangman
   
   def initialize
+    @letters = ('a'..'z').to_a
     word_clue = words.sample
     @word =  word_clue[:word]
     @clue = word_clue[:clue]
@@ -47,6 +48,9 @@ class Hangman
       if guess == 'exit'
         puts "Thanks for playing!"
         exit
+      elsif guess.length > 1 || !@letters.include?(guess)
+        puts "Please enter a letter"
+        make_guess
       elsif @word.include?(guess)
         puts "Nice guess!"
         print_teaser(guess)
@@ -63,6 +67,7 @@ class Hangman
       make_guess
     else
       puts "Game Over!"
+      puts "The word was '#{@word}'"
       exit
     end
   end
