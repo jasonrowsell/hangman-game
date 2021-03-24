@@ -19,10 +19,18 @@ class Hangman
     ]
   end
 
+  def print_teaser
+    word_teaser = ""
+    @word[:word].size.times do
+      word_teaser += "_ "
+    end
+    puts word_teaser
+  end
+
   def make_guess
     if @lives > 0
       puts "Guess a letter"
-      guess = gets.chomp.downcase
+      guess = gets.chomp.downcase.strip
       
       if @word[:word].include?(guess)
         puts "Nice guess!"
@@ -40,13 +48,9 @@ class Hangman
 
   def start
     puts "Welcome to Hangman! Your word is #{@word[:word].length} characters long"
-    puts "Your clue is: #{ @word[:clue] } "
+    puts "Your clue is: #{@word[:clue]} "
     
-    word_teaser = ""
-    @word[:word].size.times do
-      word_teaser += "_ "
-    end
-    puts word_teaser
+    print_teaser
   
     make_guess
   
