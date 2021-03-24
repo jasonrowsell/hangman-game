@@ -1,12 +1,10 @@
 class Hangman
   
   def initialize
-    @letters = ('a'..'z').to_a
     word_clue = words.sample
     @word =  word_clue[:word]
     @clue = word_clue[:clue]
     @lives = 7
-    @correct_guesses = []
     @word_teaser = ""
     @word.size.times do
       @word_teaser += "_ " 
@@ -51,8 +49,6 @@ class Hangman
         exit
       elsif @word.include?(guess)
         puts "Nice guess!"
-        @correct_guesses << guess
-        @letters.delete(guess)
         print_teaser(guess)
       else
         puts "Incorrect guess!"
