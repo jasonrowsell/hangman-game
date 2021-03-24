@@ -18,11 +18,11 @@ class Hangman
       {word: "revenge", clue: "Those who want to get even"}
     ]
   end
-  
+
   def make_guess
-    while @lives > 0 
+    if @lives > 0
       puts "Guess a letter"
-      guess = gets.chomp
+      guess = gets.chomp.downcase
       
       if @word[:word].include?(guess)
         puts "Nice guess!"
@@ -31,6 +31,10 @@ class Hangman
         @lives -= 1
         puts "You have #{@lives} lives left"
       end
+      make_guess
+    else
+      puts "Game Over!"
+      exit
     end
   end
 
@@ -38,13 +42,12 @@ class Hangman
     puts "Welcome to Hangman! Your word is #{@word[:word].length} characters long"
     puts "Your clue is: #{ @word[:clue] } "
     
-    
     word_teaser = ""
     @word[:word].size.times do
       word_teaser += "_ "
     end
     puts word_teaser
-    
+  
     make_guess
   
   end
