@@ -4,6 +4,7 @@ class Hangman
     @letters = ('a'..'z').to_a
     @word = words.sample
     @lives = 7
+    @correct_guesses = []
         
   end
     
@@ -34,6 +35,9 @@ class Hangman
       
       if @word[:word].include?(guess)
         puts "Nice guess!"
+        @correct_guesses << guess
+        @letters.delete(guess)
+        print_teaser
       else
         puts "Incorrect guess!"
         @lives -= 1
