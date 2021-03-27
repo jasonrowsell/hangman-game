@@ -4,7 +4,7 @@ A simple hangman game, made with Ruby, that can be played in the terminal.
 
 ## Installation and usage
 
-The Lounge requires latest [Ruby](https://www.ruby-lang.org/en/downloads/) version or more recent.
+The Hangman game requires latest [Ruby](https://www.ruby-lang.org/en/downloads/) version or more recent.
 
 ### Running from source
 
