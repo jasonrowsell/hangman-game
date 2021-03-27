@@ -8,7 +8,7 @@ The Hangman game requires latest [Ruby](https://www.ruby-lang.org/en/downloads/)
 
 ### Running from source
 
-The following commands install and run the Hangman program:
+The following commands clone and run the Hangman program:
 
 ```sh
 git clone https://github.com/jasonrowsell/hangman-game.git
